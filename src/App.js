@@ -27,8 +27,23 @@ function App() {
     setTodos(newTodos);
   };
 
+  function getDate() {
+    const today = new Date();
+    return today
+      .toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .split("/")
+      .join("_");
+  }
+
+  const today = getDate();
   return (
     <>
+      <h1>TO DO LIST</h1>
+      <div>{today}</div>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input type="text" ref={todoNameRef} />
       <button onClick={handleAddTodo}>タスクを追加</button>
